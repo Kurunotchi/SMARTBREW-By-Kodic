@@ -31,11 +31,11 @@ Servo Black_Coffee;      // Wemos pin no.2 or D2
 Servo Caramel_Coffee;    // Wemos pin no.3 or D5
 Servo Chocolate;         // Wemos pin no.4 or D6
 
-/* Relay Control Pins */
-const int RELAY_FORWARD = 22;  // Relay pin for forward
-const int RELAY_LEFT = 23;     // Relay pin for left turn
-const int RELAY_RIGHT = 24;    // Relay pin for right turn
-const int RELAY_STOP = 25;     // Relay pin to stop
+/* Relay Control Pins (using analog pins as digital) */
+const int RELAY_FORWARD = A2;  // Relay pin for forward
+const int RELAY_LEFT = A3;     // Relay pin for left turn
+const int RELAY_RIGHT = A4;    // Relay pin for right turn
+const int RELAY_STOP = A5;     // Relay pin to stop
 
 /* Servo Positions */
 const int BlackCoffeePosition = 90;     
