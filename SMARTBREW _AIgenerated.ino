@@ -31,6 +31,12 @@ Servo Black_Coffee;      // Wemos pin no.2 or D2
 Servo Caramel_Coffee;    // Wemos pin no.3 or D5
 Servo Chocolate;         // Wemos pin no.4 or D6
 
+/* Relay Control Pins */
+const int RELAY_FORWARD = 22;  // Relay pin for forward
+const int RELAY_LEFT = 23;     // Relay pin for left turn
+const int RELAY_RIGHT = 24;    // Relay pin for right turn
+const int RELAY_STOP = 25;     // Relay pin to stop
+
 /* Servo Positions */
 const int BlackCoffeePosition = 90;     
 const int CaramelCoffeePosition = 90;
@@ -42,6 +48,10 @@ void setup() {
     lcd.begin(16, 2);
     pinMode(Next, INPUT_PULLUP);
     pinMode(Select, INPUT_PULLUP);
+    pinMode(RELAY_FORWARD, OUTPUT);
+    pinMode(RELAY_LEFT, OUTPUT);
+    pinMode(RELAY_RIGHT, OUTPUT);
+    pinMode(RELAY_STOP, OUTPUT);
     displaySelection();
 
     Cup.attach(13);               // Cup dropper
@@ -144,22 +154,34 @@ void followLineAndServe() {
 
 /* Stop Robot */
 void stopRobot() {
-    // Logic to stop the robot's movement
+    digitalWrite(RELAY_STOP, HIGH);
+    digitalWrite(RELAY_FORWARD, LOW);
+    digitalWrite(RELAY_LEFT, LOW);
+    digitalWrite(RELAY_RIGHT, LOW);
     Serial.println("Robot stopped.");
 }
 
 /* Movement Functions */
 void moveForward() {
-    // Code to move the robot forward
+    digitalWrite(RELAY_FORWARD, HIGH);
+    digitalWrite(RELAY_LEFT, LOW);
+    digitalWrite(RELAY_RIGHT, LOW);
+    digitalWrite(RELAY_STOP, LOW);
     Serial.println("Moving Forward");
 }
 
 void turnLeft() {
-    // Code to turn the robot left
+    digitalWrite(RELAY_LEFT, HIGH);
+    digitalWrite(RELAY_FORWARD, LOW);
+    digitalWrite(RELAY_RIGHT, LOW);
+    digitalWrite(RELAY_STOP, LOW);
     Serial.println("Turning Left");
 }
 
 void turnRight() {
-    // Code to turn the robot right
+    digitalWrite(RELAY_RIGHT, HIGH);
+    digitalWrite(RELAY_FORWARD, LOW);
+    digitalWrite(RELAY_LEFT, LOW);
+    digitalWrite(RELAY_STOP, LOW);
     Serial.println("Turning Right");
 }
